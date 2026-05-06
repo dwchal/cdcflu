@@ -7,6 +7,8 @@ SINCE=$(date -d '90 days ago' +%Y-%m-%d)
 curl -s "https://data.cdc.gov/resource/ymmh-divb.csv?\$where=sample_collect_date>'${SINCE}'&\$limit=50000" \
   -o wastewater_flu_a.csv
 
+python3 plot_olmsted.py
+
 git add -A
 git diff --cached --quiet || git commit -m "auto: CDC flu update $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 git push origin main
